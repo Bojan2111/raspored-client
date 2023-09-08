@@ -4,7 +4,7 @@ import DashboardSideMenu from "./DashboardSideMenu";
 import ProfileControl from "./ProfileControl";
 import MainView from "./MainView";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const dashboardData = {
     profile: {
       name: "Ime Prezime",
@@ -20,10 +20,13 @@ const Dashboard = () => {
   };
   return (
     <Fragment>
-      <ProfileControl content={dashboardData.profile} />
+      <ProfileControl
+        username={props.username}
+        content={dashboardData.profile}
+      />
       <DashboardHeader content={dashboardData.header} />
       <DashboardSideMenu content={dashboardData.sideMenu} />
-      <MainView content={dashboardData.main} />
+      <MainView token={props.token} content={dashboardData.main} />
     </Fragment>
   );
 };

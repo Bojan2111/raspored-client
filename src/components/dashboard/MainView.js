@@ -1,6 +1,7 @@
 import React from "react";
 
 const MainView = (props) => {
+  console.log("From main view:", props.token);
   return (
     <div>
       <h1>{props.content.title}</h1>
