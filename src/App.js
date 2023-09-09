@@ -3,8 +3,11 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 
 const App = () => {
-  const [jwtToken, setJwtToken] = useState("");
+  const [jwtToken, setJwtToken] = useState(null);
   const [username, setUsername] = useState("");
+  const [features, setFeatures] = useState([]);
+
+  // test auth: qwert = zap, asdf = adm
 
   async function sendLoginData(loginData) {
     const response = await fetch("https://localhost:44383/login", {
@@ -20,10 +23,23 @@ const App = () => {
     setUsername(data.username);
   }
 
+  async function getFeatures(token) {
+    const response = await fetch("https://localhost:44383/role-features", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authentication: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    console.log("features:", data, JSON.parse(data));
+    setFeatures(data);
+  }
+
   return (
     <div className="app-container bg-light">
-      {jwtToken != "" ? (
-        <Dashboard username={username} token={jwtToken} />
+      {jwtToken && features.length > 0 ? (
+        <Dashboard features={features} username={username} token={jwtToken} />
       ) : (
         <Login onLoginSubmit={sendLoginData} />
       )}

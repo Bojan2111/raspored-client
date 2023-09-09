@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import DashboardHeader from "./DashboardHeader";
 import DashboardSideMenu from "./DashboardSideMenu";
 import ProfileControl from "./ProfileControl";
 import MainView from "./MainView";
 
 const Dashboard = (props) => {
+  const [features, setFeatures] = useState([]);
+  setFeatures(props.features);
   const dashboardData = {
     profile: {
       name: "Ime Prezime",
