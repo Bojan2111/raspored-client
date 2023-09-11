@@ -3,10 +3,11 @@ import DashboardHeader from "./DashboardHeader";
 import DashboardSideMenu from "./DashboardSideMenu";
 import ProfileControl from "./ProfileControl";
 import MainView from "./MainView";
+import classes from "./Dashboard.module.css";
 
 const Dashboard = (props) => {
-  const [features, setFeatures] = useState([]);
-  setFeatures(props.features);
+  // const [features, setFeatures] = useState([]);
+  // setFeatures(props.features);
   const dashboardData = {
     profile: {
       name: "Ime Prezime",
@@ -21,15 +22,19 @@ const Dashboard = (props) => {
     },
   };
   return (
-    <Fragment>
-      <ProfileControl
-        username={props.username}
-        content={dashboardData.profile}
-      />
-      <DashboardHeader content={dashboardData.header} />
-      <DashboardSideMenu content={dashboardData.sideMenu} />
-      <MainView token={props.token} content={dashboardData.main} />
-    </Fragment>
+    <div className={classes.bgnd}>
+      <div className={classes.header}>
+        <ProfileControl
+          username={props.username}
+          content={dashboardData.profile}
+        />
+        <DashboardHeader content={dashboardData.header} />
+      </div>
+      <div>
+        <DashboardSideMenu content={dashboardData.sideMenu} />
+        <MainView token={props.token} content={dashboardData.main} />
+      </div>
+    </div>
   );
 };
 

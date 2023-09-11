@@ -3,9 +3,9 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 
 const App = () => {
-  const [jwtToken, setJwtToken] = useState(null);
+  const [jwtToken, setJwtToken] = useState("fdsfsf");
   const [username, setUsername] = useState("");
-  const [features, setFeatures] = useState([]);
+  const [features, setFeatures] = useState(["fasdf", "fsadf"]);
 
   // test auth: qwert = zap, asdf = adm
 
@@ -38,11 +38,11 @@ const App = () => {
 
   return (
     <div className="app-container bg-light">
-      {jwtToken && features.length > 0 ? (
-        <Dashboard features={features} username={username} token={jwtToken} />
-      ) : (
+      {/* {jwtToken && features.length > 0 ? ( */}
+      <Dashboard features={features} username={username} token={jwtToken} />
+      {/* ) : (
         <Login onLoginSubmit={sendLoginData} />
-      )}
+      )} */}
     </div>
   );
 };
