@@ -30,7 +30,7 @@ const Dashboard = (props) => {
         />
         <DashboardHeader content={dashboardData.header} />
       </div>
-      <div>
+      <div className={classes.main}>
         <DashboardSideMenu content={dashboardData.sideMenu} />
         <MainView token={props.token} content={dashboardData.main} />
       </div>
