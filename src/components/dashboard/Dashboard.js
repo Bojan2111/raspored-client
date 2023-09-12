@@ -8,6 +8,7 @@ import classes from "./Dashboard.module.css";
 const Dashboard = (props) => {
   // const [features, setFeatures] = useState([]);
   // setFeatures(props.features);
+  const [feature, setFeature] = useState("Licni");
   const dashboardData = {
     profile: {
       name: "Ime Prezime",
@@ -21,6 +22,11 @@ const Dashboard = (props) => {
       info: "neke nebitne informacije",
     },
   };
+
+  function handleMainView(option) {
+    setFeature(option);
+  }
+
   return (
     <div className={classes.bgnd}>
       <div className={classes.header}>
@@ -28,11 +34,18 @@ const Dashboard = (props) => {
           username={props.username}
           content={dashboardData.profile}
         />
-        <DashboardHeader content={dashboardData.header} />
+        <DashboardHeader
+          onFeatureClick={handleMainView}
+          content={dashboardData.header}
+        />
       </div>
       <div className={classes.main}>
         <DashboardSideMenu content={dashboardData.sideMenu} />
-        <MainView token={props.token} content={dashboardData.main} />
+        <MainView
+          feature={feature}
+          token={props.token}
+          content={dashboardData.main}
+        />
       </div>
     </div>
   );

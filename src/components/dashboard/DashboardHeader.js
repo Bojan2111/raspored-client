@@ -7,10 +7,14 @@ const DashboardHeader = (props) => {
     .querySelector(":root")
     .style.setProperty("--features-grid-cols", props.content.length);
 
+  function handleFuncBtnClick(option) {
+    props.onFeatureClick(option);
+  }
+
   return (
     <div className={classes.features}>
       {props.content.map((d) => (
-        <FuncButton key={d} funcBtnText={d} />
+        <FuncButton onClick={handleFuncBtnClick} key={d} funcBtnText={d} />
       ))}
     </div>
   );
