@@ -4,7 +4,7 @@ import classes from "./ProfileControl.module.css";
 const ProfileControl = (props) => {
   return (
     <div className={classes.profile}>
-      <h1>Hi {props.username}!</h1>
+      <h3>Hi {props.username}!</h3>
       <div>
         <p>control</p>
       </div>

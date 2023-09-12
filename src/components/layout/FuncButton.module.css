@@ -1,6 +1,10 @@
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: bisque;
   border: 2px double black;
+  width: 200px;
 }
 
 .container:hover {

@@ -2,16 +2,17 @@
   background-color: bisque;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 15vh;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  min-height: 15vh;
 }
 
 .main {
-  display: flex;
-  height: 85vh;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  min-height: 85vh;
 }
