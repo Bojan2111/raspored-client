@@ -1,0 +1,25 @@
+.workday {
+  background-color: aliceblue;
+}
+
+.saturday {
+  background-color: orange;
+}
+
+.sunday {
+  background-color: red;
+}
+
+.week {
+  background-color: antiquewhite;
+}
+
+.month-year {
+  display: flex;
+  background-color: aqua;
+}
+
+.month-year-btn {
+  border: 1px solid black;
+  cursor: pointer;
+}

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Calendar from "../../calendar/Calendar";
-import classes from "./PersonalSchedule.module.css";
+import classes from "./TeamSchedule.module.css";
 
-const PersonalSchedule = (props) => {
+const TeamSchedule = (props) => {
   const [title, setTitle] = useState("");
   const [team, setTeam] = useState("");
   const [month, setMonth] = useState("");
@@ -129,10 +128,9 @@ const PersonalSchedule = (props) => {
             <div key={date}>{date}</div>
           ))}
         </div>
-        <Calendar />
       </div>
     </div>
   );
 };
 
-export default PersonalSchedule;
+export default TeamSchedule;
