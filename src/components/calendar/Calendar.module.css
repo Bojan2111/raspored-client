@@ -23,3 +23,8 @@
   border: 1px solid black;
   cursor: pointer;
 }
+
+.date-list {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
