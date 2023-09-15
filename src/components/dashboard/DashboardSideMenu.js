@@ -5,7 +5,7 @@ const DashboardSideMenu = (props) => {
   return (
     <div>
       {props.content.map((d) => (
-        <LinkButton btnText={d} />
+        <LinkButton key={d} btnText={d} />
       ))}
     </div>
   );

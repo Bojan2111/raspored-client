@@ -16,6 +16,7 @@ const PersonalSchedule = (props) => {
     teamMemberRoleName: "VT",
     teamMemberRoleDescription: "Voda smene",
     monthName: "AUGUST",
+
     shifts: [
       {
         shiftDate: "2023-08-01T00:00:00",
@@ -129,7 +130,7 @@ const PersonalSchedule = (props) => {
             <div key={date}>{date}</div>
           ))}
         </div>
-        <Calendar />
+        <Calendar shifts={fakeData.shifts} />
       </div>
     </div>
   );

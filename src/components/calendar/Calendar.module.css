@@ -1,4 +1,4 @@
-.workday {
+/* .workday {
   background-color: aliceblue;
 }
 
@@ -27,4 +27,120 @@
 .date-list {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+}
+
+.active {
+  background-color: blueviolet;
+}
+
+.inactive {
+  background-color: lightskyblue;
+} */
+
+/* Calendar Container */
+.calendar {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  text-align: center;
+}
+
+/* Month and Year Display */
+.month-year {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+.month-year-btn {
+  cursor: pointer;
+}
+
+/* Days of the Week */
+.days-of-week {
+  display: flex;
+  background-color: #f0f0f0;
+}
+
+.workday {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.saturday {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #e0e0e0;
+  color: blue;
+}
+
+.sunday {
+  flex: 1;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #e0e0e0;
+  color: red;
+}
+
+/* Dates */
+.date-list {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+
+.active {
+  flex: 1;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.inactive {
+  flex: 1;
+  padding: 10px;
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.day {
+  display: flex;
+}
+
+.days {
+  background-color: #e0e0e0;
+}
+
+.disabled {
+  background-color: lightcoral;
+}
+
+.today {
+  background-color: lightgreen;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute; /* Position the tooltip relative to its parent */
+  background-color: #333; /* Background color of the tooltip */
+  color: #fff; /* Text color of the tooltip */
+  padding: 5px; /* Padding inside the tooltip */
+  border-radius: 4px; /* Rounded corners */
+  z-index: 1; /* Ensure the tooltip is displayed on top of other content */
+  display: none; /* Initially hide the tooltip */
+}
+
+/* Style for the tooltip when it's displayed */
+.tooltip.active {
+  display: block;
+  /* You can add animations or transitions here for a smoother appearance */
 }

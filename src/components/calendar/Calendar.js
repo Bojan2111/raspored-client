@@ -1,130 +1,148 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import {
+  format,
+  addMonths,
+  subMonths,
+  startOfWeek,
+  startOfMonth,
+  endOfWeek,
+  endOfMonth,
+  isSameMonth,
+  isSameDay,
+  addDays,
+} from "date-fns";
 import classes from "./Calendar.module.css";
-
-// const fakeCal = {
-//   "week-12": [31, 1, 2, 3, 4, 5, 6],
-//   "week-13": [7, 8, 9, 10, 11, 12, 13],
-//   "week-14": [14, 15, 16, 17, 18, 19, 20],
-//   "week-15": [21, 22, 23, 24, 25, 26, 27],
-//   "week-16": [28, 29, 30, 31, 1, 2, 3],
-// };
-
-// const weekNums = [12, 13, 14, 15, 16];
 
 const Calendar = (props) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
-  const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-  console.log("Line 18");
-  const months = [
-    "Januar",
-    "Februar",
-    "Mart",
-    "April",
-    "Maj",
-    "Jun",
-    "Jul",
-    "Avgust",
-    "Septembar",
-    "Oktobar",
-    "Novembar",
-    "Decembar",
-  ];
-  const dateArr = [];
 
-  // useEffect(() => {
-  //   setCurrentDate(new Date());
-  //   setCurrentYear(currentDate.getFullYear());
-  //   setCurrentMonth(currentDate.getMonth());
-  // }, []);
+  const shiftsData = props.shifts.reduce((result, shift) => {
+    // Extract the date part (YYYY-MM-DD) from shiftDate
+    const dateKey = shift.shiftDate.split("T")[0];
 
-  function createCalendar() {
-    let firstWeekday = new Date(currentYear, currentMonth, 1).getDay();
-    let lastDate = new Date(currentYear, currentMonth + 1, 0).getDate();
-    let lastWeekday = new Date(currentYear, currentMonth, lastDate).getDay();
-    let monthLastDate = new Date(currentYear, currentMonth, 0).getDate();
-    console.log("Line 46");
+    // Create an object with shiftTypeName and shiftTypeDescription
+    const shiftInfo = {
+      shiftTypeName: shift.shiftTypeName,
+      shiftTypeDescription: shift.shiftTypeDescription,
+    };
 
-    for (let i = firstWeekday; i > 0; i--) {
-      dateArr.push({ marked: "inactive", date: monthLastDate - i + 1 });
-    }
-    console.log("Line 51");
+    // Add the shiftInfo to the shiftsData using the dateKey as the key
+    result[dateKey] = shiftInfo;
 
-    for (let i = 1; i <= lastDate; i++) {
-      let todayClass =
-        i === currentDate.getDate() &&
-        currentMonth === new Date().getMonth() &&
-        currentYear === new Date().getFullYear()
-          ? "active"
-          : "";
-      dateArr.push({ marked: todayClass, date: i });
-    }
-    console.log("Line 62");
+    return result;
+  }, {});
 
-    for (let i = lastWeekday; i < 6; i++) {
-      dateArr.push({ marked: "inactive", date: i - lastWeekday + 1 });
-    }
-    console.log("Line 67");
-  }
+  const nextMonth = () => {
+    setCurrentDate(addMonths(currentDate, 1));
+  };
 
-  console.log("Line 70");
-  useEffect(() => {
-    createCalendar();
-    console.log("Line 73");
-  });
-  console.log("Line 75");
+  const prevMonth = () => {
+    setCurrentDate(subMonths(currentDate, 1));
+  };
 
-  function handlePrevNextClick(event) {
-    window.event.preventDefault();
-    setCurrentMonth((prevState) =>
-      event.id === "prev" ? prevState - 1 : prevState + 1
+  const renderHeader = () => {
+    const dateFormat = "MMMM yyyy";
+    return (
+      <div className={classes.header}>
+        <div className={classes.previous} onClick={prevMonth}>
+          &#8249;
+        </div>
+        <div className={classes["current-month"]}>
+          {format(currentDate, dateFormat)}
+        </div>
+        <div className={classes.next} onClick={nextMonth}>
+          &#8250;
+        </div>
+      </div>
     );
-    console.log("Line 81");
-    if (currentMonth < 0 || currentMonth > 11) {
-      setCurrentDate(new Date(currentYear, currentMonth, new Date().getDate()));
-      setCurrentYear(currentDate.getFullYear());
-      setCurrentMonth(currentDate.getMonth());
-    } else {
-      setCurrentDate(new Date());
+  };
+
+  const renderDays = () => {
+    const dateFormat = "eeee";
+    const days = [];
+    let startDate = startOfWeek(currentDate, { weekStartsOn: 1 });
+
+    for (let i = 0; i < 7; i++) {
+      days.push(
+        <div className={classes.day} key={i}>
+          {format(addDays(startDate, i), dateFormat)}
+        </div>
+      );
     }
-    createCalendar();
-  }
+
+    return <div className={classes.days}>{days}</div>;
+  };
+
+  const renderCells = () => {
+    const monthStart = startOfMonth(currentDate);
+    const monthEnd = endOfMonth(currentDate);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 });
+
+    const dateFormat = "d";
+    const rows = [];
+
+    let days = [];
+    let day = startDate;
+    let formattedDate = "";
+
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        formattedDate = format(day, dateFormat);
+        const cloneDay = day;
+
+        // Get shift data for the current date
+        const shiftData = shiftsData[format(day, "yyyy-MM-dd")];
+
+        days.push(
+          <div
+            className={`${classes.day} ${
+              !isSameMonth(day, monthStart) ? classes.disabled : ""
+            } ${isSameDay(day, new Date()) ? classes.today : ""}`}
+            key={day}
+          >
+            <span
+              onClick={() => handleDateClick(cloneDay)}
+              className={classes.clickable}
+            >
+              {formattedDate}
+            </span>
+
+            {/* Display shiftTypeName next to the date */}
+            {shiftData && (
+              <div className={classes.shiftType}>{shiftData.shiftTypeName}</div>
+            )}
+
+            {/* Tooltip for shiftTypeDescription */}
+            {shiftData && (
+              <div className={classes.tooltip}>
+                {shiftData.shiftTypeDescription}
+              </div>
+            )}
+          </div>
+        );
+        day = addDays(day, 1);
+      }
+      rows.push(
+        <div className={classes.row} key={day}>
+          {days}
+        </div>
+      );
+      days = [];
+    }
+
+    return <div className={classes.body}>{rows}</div>;
+  };
+
+  const handleDateClick = (day) => {
+    console.log("Clicked date: ", day);
+  };
 
   return (
-    <div>
-      <div className={classes["month-year"]}>
-        <div
-          id="prev"
-          className={classes["month-year-btn"]}
-          onClick={handlePrevNextClick}
-        >
-          &lt;
-        </div>
-        <div>{`${months[currentMonth]} ${currentYear}`}</div>
-        <div
-          id="next"
-          className={classes["month-year-btn"]}
-          onClick={handlePrevNextClick}
-        >
-          &gt;
-        </div>
-      </div>
-      <div>
-        <div>
-          <div className={classes.workday}>Pon</div>
-          <div className={classes.workday}>Uto</div>
-          <div className={classes.workday}>Sre</div>
-          <div className={classes.workday}>Čet</div>
-          <div className={classes.workday}>Pet</div>
-          <div className={classes.saturday}>Sub</div>
-          <div className={classes.sunday}>Ned</div>
-        </div>
-        <div className={classes["date-list"]}>
-          {dateArr.map((date) => (
-            <div className={date.marked}>{date.date}</div>
-          ))}
-        </div>
-      </div>
+    <div className={classes.calendar}>
+      {renderHeader()}
+      {renderDays()}
+      {renderCells()}
     </div>
   );
 };
