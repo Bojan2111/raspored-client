@@ -96,6 +96,12 @@ const PersonalSchedule = (props) => {
         shiftTypeName: "D",
         shiftTypeDescription: "Dnevna smena - od 07h do 19h",
       },
+      {
+        shiftDate: "2023-09-16T00:00:00",
+        teamMemberId: 1,
+        shiftTypeName: "D",
+        shiftTypeDescription: "Dnevna smena - od 07h do 19h",
+      },
     ],
   };
 
@@ -124,12 +130,6 @@ const PersonalSchedule = (props) => {
         <p>{`Raspored rada za mesec ${fakeData.monthName}`}</p>
       </div>
       <div className={classes.schedule}>
-        <div className={classes.dates}>
-          <div>IME I PREZIME</div>
-          {dateArray.map((date) => (
-            <div key={date}>{date}</div>
-          ))}
-        </div>
         <Calendar shifts={fakeData.shifts} />
       </div>
     </div>
