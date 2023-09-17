@@ -1,4 +1,28 @@
 :root {
+    /** commonly used saturation/lightness/opacity levels **/ 
+    --saturation-lower: 20%;
+    --saturation-normal: 50%; /* mid range - normal */
+    --saturation-higher: 80%;
+    
+    --lightness-higher: 75%;
+    --lightness-normal: 50%; /* mid range - normal */
+    --lightness-lower: 35%;
+    
+    --opacity-normal: 100%; /* no opacity - normal */
+    --opacity-lower: 80%;
+    --opacity-lowest: 60%;
+
+    /* Color variables */
+    --background-base: 0;
+    --text-color-base: 0;
+    --border-color-base: 0;
+    --background-lighter: hsla(var(var(--background-base), var(--saturation-normal), var(--lightness-higher), var(--opacity-normal)));
+    --background-normal: hsla(var(var(--background-base), var(--saturation-normal), var(--lightness-normal), var(--opacity-normal)));
+    --background-darker: hsla(var(var(--background-base), var(--saturation-normal), var(--lightness-lower), var(--opacity-normal)));
+    
+    --text-color-white: hsla(var(--text-color-base), var(--saturation-normal), 100%, var(--opacity-normal))
+
+    /* Functional variables */
     --features-grid-cols: 1;
 }
 
