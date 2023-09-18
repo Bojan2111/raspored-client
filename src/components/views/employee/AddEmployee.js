@@ -48,7 +48,7 @@ const AddEmployee = () => {
       address: addressRef.current.value,
       city: cityRef.current.value,
       zipCode: zipCodeRef.current.value,
-      religiousHoliday: religiousHolidayRef.current.value,
+      religiousHoliday: religiousHolidayRef.current.value, // It is in "yyyy-mm-dd" string format. use new Date(ref.current.value) otherwise
     };
 
     console.log(data);

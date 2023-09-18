@@ -1,0 +1,119 @@
+.container {
+  background-color: aliceblue;
+}
+
+.header {
+  background-color: #d86f6b;
+  text-align: center;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-weight: bold;
+}
+
+.table-header-cell {
+  border-right: 1px solid black;
+}
+
+.table-header-cell, .table-cell:not(.delete-button, .edit-button) {
+  padding-left: 10px;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+}
+
+.help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  border: 2px solid black;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+}
+
+[data-title]:after {
+  content: attr(data-title);
+  background-color: #d86f6b;
+  color: #111;
+  position: absolute;
+  padding: 1px 5px 2px 5px;
+  right: 0;
+  top: 0;
+  width: 200px;
+  white-space: wrap;
+  box-shadow: 1px 1px 3px #222222;
+  opacity: 0;
+  border: 1px solid #111111;
+  z-index: 99999;
+  visibility: hidden;
+}
+
+[data-title] {
+  position: relative;
+}
+
+.table-body {
+  display: grid;
+}
+
+.table-body-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+}
+
+.table-body-row:nth-child(odd) {
+  background-color: rgb(145, 180, 210);
+}
+
+.table-cell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid black;
+}
+
+.edit-button, .delete-button {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 2em;
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: darkgoldenrod;
+}
+
+.edit-button:hover {
+  background-color: rgb(129, 94, 5);
+}
+
+.delete-button {
+  background-color: darkred;
+}
+
+.delete-button:hover {
+  background-color: rgb(177, 4, 4);
+}
