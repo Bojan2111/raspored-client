@@ -65,7 +65,7 @@ const EditEmployee = (props) => {
       <div className={classes["form-container"]}>
         <form onSubmit={handleEmployeeData}>
           <div className={classes["input-field"]}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Korisničko ime</label>
             <input
               name="username"
               id="username"
@@ -75,7 +75,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">Ime</label>
             <input
               name="firstName"
               id="firstName"
@@ -85,7 +85,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastName">Prezime</label>
             <input
               name="lastName"
               id="lastName"
@@ -105,7 +105,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Lozinka</label>
             <input
               name="password"
               id="password"
@@ -115,7 +115,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="dateOfBirth">Date Of Birth</label>
+            <label htmlFor="dateOfBirth">Datum rođenja</label>
             <input
               name="dateOfBirth"
               id="dateOfBirth"
@@ -124,7 +124,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="yearOfEmployment">YearOfEmployment</label>
+            <label htmlFor="yearOfEmployment">Godina zaposlenja</label>
             <input
               name="yearOfEmployment"
               id="yearOfEmployment"
@@ -133,7 +133,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="licenseNumber">License Number</label>
+            <label htmlFor="licenseNumber">Broj licence</label>
             <input
               name="licenseNumber"
               id="licenseNumber"
@@ -143,7 +143,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="contractType">Contract Type</label>
+            <label htmlFor="contractType">Tip ugovora</label>
             <select ref={contractTypeRef}>
               {contractTypes.map((ct) => (
                 <option
@@ -156,7 +156,7 @@ const EditEmployee = (props) => {
             </select>
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="position">Position</label>
+            <label htmlFor="position">Radno mesto</label>
             <select ref={positionRef}>
               {positions.map((p) => (
                 <option
@@ -169,7 +169,7 @@ const EditEmployee = (props) => {
             </select>
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="address">Address</label>
+            <label htmlFor="address">Adresa</label>
             <input
               name="address"
               id="address"
@@ -179,7 +179,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">Mesto</label>
             <input
               name="city"
               id="city"
@@ -189,7 +189,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="zipCode">ZIP Code</label>
+            <label htmlFor="zipCode">Poštanski broj</label>
             <input
               name="zipCode"
               id="zipCode"
@@ -199,7 +199,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes["input-field"]}>
-            <label htmlFor="religiousHoliday">Religious Holiday</label>
+            <label htmlFor="religiousHoliday">Verski praznik</label>
             <input
               name="religiousHoliday"
               id="religiousHoliday"
@@ -208,7 +208,7 @@ const EditEmployee = (props) => {
             />
           </div>
           <div className={classes.submit}>
-            <button>Submit</button>
+            <button>Sačuvaj izmene</button>
           </div>
         </form>
       </div>

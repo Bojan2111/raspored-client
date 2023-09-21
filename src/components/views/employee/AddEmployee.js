@@ -34,6 +34,13 @@ const AddEmployee = () => {
 
     // could add validation here...
 
+    const getDayMonthFromDate = (dateStr) => {
+      let dateArr = dateStr.split("-");
+      let month = dateArr[1];
+      let day = dateArr[2];
+      return `${month}-${day}`;
+    };
+
     const data = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
@@ -48,7 +55,7 @@ const AddEmployee = () => {
       address: addressRef.current.value,
       city: cityRef.current.value,
       zipCode: zipCodeRef.current.value,
-      religiousHoliday: religiousHolidayRef.current.value, // It is in "yyyy-mm-dd" string format. use new Date(ref.current.value) otherwise
+      religiousHoliday: getDayMonthFromDate(religiousHolidayRef.current.value), // It is in "yyyy-mm-dd" string format. use new Date(ref.current.value) otherwise
     };
 
     console.log(data);
@@ -62,7 +69,7 @@ const AddEmployee = () => {
       </div>
       <form onSubmit={handleSubmitData}>
         <div className={classes["input-field"]}>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Korisničko ime</label>
           <input
             name="username"
             id="username"
@@ -72,7 +79,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">Ime</label>
           <input
             name="firstName"
             id="firstName"
@@ -82,7 +89,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Prezime</label>
           <input
             name="lastName"
             id="lastName"
@@ -102,7 +109,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Lozinka</label>
           <input
             name="password"
             id="password"
@@ -112,7 +119,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="dateOfBirth">Date Of Birth</label>
+          <label htmlFor="dateOfBirth">Datum Rođenja</label>
           <input
             name="dateOfBirth"
             id="dateOfBirth"
@@ -121,7 +128,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="yearOfEmployment">YearOfEmployment</label>
+          <label htmlFor="yearOfEmployment">Godina zaposlenja</label>
           <input
             name="yearOfEmployment"
             id="yearOfEmployment"
@@ -130,7 +137,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="licenseNumber">License Number</label>
+          <label htmlFor="licenseNumber">Broj licence</label>
           <input
             name="licenseNumber"
             id="licenseNumber"
@@ -140,7 +147,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="contractType">Contract Type</label>
+          <label htmlFor="contractType">Tip ugovora</label>
           <select ref={contractTypeRef}>
             {contractTypes.map((ct) => (
               <option
@@ -153,7 +160,7 @@ const AddEmployee = () => {
           </select>
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="position">Position</label>
+          <label htmlFor="position">Radno mesto</label>
           <select ref={positionRef}>
             {positions.map((p) => (
               <option
@@ -166,7 +173,7 @@ const AddEmployee = () => {
           </select>
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">Adresa</label>
           <input
             name="address"
             id="address"
@@ -176,7 +183,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="city">City</label>
+          <label htmlFor="city">Mesto</label>
           <input
             name="city"
             id="city"
@@ -186,7 +193,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="zipCode">ZIP Code</label>
+          <label htmlFor="zipCode">Poštanski broj</label>
           <input
             name="zipCode"
             id="zipCode"
@@ -196,7 +203,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes["input-field"]}>
-          <label htmlFor="religiousHoliday">Religious Holiday</label>
+          <label htmlFor="religiousHoliday">Verski praznik</label>
           <input
             name="religiousHoliday"
             id="religiousHoliday"
@@ -205,7 +212,7 @@ const AddEmployee = () => {
           />
         </div>
         <div className={classes.submit}>
-          <button>Submit</button>
+          <button>Dodaj korisnika</button>
         </div>
       </form>
     </div>

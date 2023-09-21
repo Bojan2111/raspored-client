@@ -32,7 +32,7 @@ const Teams = (props) => {
 
   return (
     <div>
-      <div className={header}>
+      <div className={classes.header}>
         <h2>Spisak radnih timova</h2>
       </div>
       <div className={classes["team-list"]}>
@@ -54,6 +54,9 @@ const Teams = (props) => {
                 className={classes["table-body-cell"]}
               >
                 {item.numberOfEmployees}
+              </div>
+              <div key={`tm_${item.id}`} className={classes["action-button"]}>
+                Pregled zaposlenih u smeni
               </div>
             </div>
           ))}

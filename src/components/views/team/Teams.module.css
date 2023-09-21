@@ -1,0 +1,63 @@
+.container {
+  background-color: aliceblue;
+}
+
+.header {
+  background-color: #d86f6b;
+  text-align: center;
+}
+
+.table-head {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-weight: bold;
+}
+
+.table-header-cell {
+  /* border-right: 1px solid black; */
+}
+
+.table-header-cell, .table-body-cell:not(.delete-button, .edit-button) {
+  padding-left: 10px;
+  border-right: 1px solid black;
+}
+
+.table-body {
+  display: grid;
+}
+
+.table-body-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.table-body-row:nth-child(odd) {
+  background-color: rgb(145, 180, 210);
+}
+
+.table-body-cell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+  background-color: darkgoldenrod;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  height: 2em;
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: rgb(129, 94, 5);
+}
