@@ -4,10 +4,31 @@
 
 .schedule {
   background-color: aquamarine;
+  width: 100%;
 }
 
 .dates {
   background-color: aliceblue;
   display: flex;
   justify-content: space-evenly;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+}
+
+.table-shifts {
+  display: grid;
+  grid-template-columns: repeat(var(--features-grid-cols), 1fr);
+}
+
+.cell-data:hover {
+  background-color: rgba(0, 0, 0, .7);
+  color: white;
 }

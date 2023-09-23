@@ -4,6 +4,7 @@ import PersonalSchedule from "../views/schedule/PersonalSchedule";
 import AddEmployee from "../views/employee/AddEmployee";
 import Employees from "../views/employee/Employees";
 import Teams from "../views/team/Teams";
+import TeamSchedule from "../views/schedule/TeamSchedule";
 
 const MainView = (props) => {
   return (
@@ -12,7 +13,8 @@ const MainView = (props) => {
       {props.feature === "Licni" ? <PersonalSchedule /> : <p>Nothing</p>} */}
       {/* <Employees /> */}
       {/* <AddEmployee /> */}
-      <Teams />
+      {/* <Teams /> */}
+      <TeamSchedule />
     </div>
   );
 };
