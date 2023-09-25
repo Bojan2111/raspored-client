@@ -1,7 +1,6 @@
 .features {
   display: grid;
   grid-template-columns: repeat(var(--features-grid-cols), 1fr);
-  justify-content: space-evenly;
   width: 100%;
   margin: 0 auto;
 }

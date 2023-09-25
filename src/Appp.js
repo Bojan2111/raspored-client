@@ -5,6 +5,7 @@ import Blogin from "./features/auth/Blogin";
 import Public from "./components/Public";
 import Welcome from "./features/auth/Welcome";
 import RequireAuth from "./features/auth/RequireAuth";
+import UsersList from "./features/users/UsersList";
 
 const Appp = () => {
   return (
@@ -15,6 +16,7 @@ const Appp = () => {
 
         <Route element={<RequireAuth />}>
           <Route path="welcome" element={<Welcome />} />
+          <Route path="userslist" element={<UsersList />} />
         </Route>
       </Route>
     </Routes>
