@@ -8,7 +8,12 @@ const DashboardSideMenu = (props) => {
   return (
     <div>
       {props.content.map((d) => (
-        <LinkButton onClick={handleClick} key={d} btnText={d} />
+        <LinkButton
+          onClick={handleClick}
+          key={d}
+          btnText={d}
+          isSelected={props.selectedItem === d}
+        />
       ))}
     </div>
   );

@@ -7,3 +7,7 @@
   background-color: blanchedalmond;
   border-bottom: 3px solid green;
 }
+
+.selected {
+  background-color: rgba(0, 0, 0, .3);
+}

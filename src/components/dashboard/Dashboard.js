@@ -11,10 +11,11 @@ const Dashboard = (props) => {
   // setFeatures(props.features);
   const [feature, setFeature] = useState("");
   const [item, setItem] = useState("");
+  const [headerItems, setHeaderItems] = useState([]);
   const featureKeys = Object.keys(featuresList).filter(
     (f) => !f.startsWith("RC")
   );
-  // const featureKeys = [];
+
   const dashboardData = {
     profile: {
       name: "Ime Prezime",
@@ -35,14 +36,9 @@ const Dashboard = (props) => {
 
   const handleMenu = (item) => {
     setItem(item);
+    setHeaderItems(featuresList[item].map((d) => d.name));
     console.log(item);
   };
-
-  // for (const key in featuresList) {
-  //   if (!key.startsWith("RC")) {
-  //     featureKeys.push(key);
-  //   }
-  // }
 
   useEffect(() => {
     setFeature(featureKeys.length > 0 ? featureKeys[0] : "");
@@ -57,13 +53,14 @@ const Dashboard = (props) => {
         />
         <DashboardHeader
           onFeatureClick={handleMainView}
-          content={dashboardData.header}
+          content={headerItems}
         />
       </div>
       <div className={classes.main}>
         <DashboardSideMenu
-          content={dashboardData.sideMenu}
+          content={featureKeys}
           onMenuItemClick={handleMenu}
+          selectedItem={item}
         />
         <MainView
           feature={feature}
