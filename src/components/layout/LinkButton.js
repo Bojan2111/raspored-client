@@ -2,8 +2,11 @@ import React from "react";
 import classes from "./LinkButton.module.css";
 
 const LinkButton = (props) => {
+  const handleBtnClick = () => {
+    props.onClick(props.btnText);
+  };
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onClick={handleBtnClick}>
       <p>{props.btnText}</p>
     </div>
   );
