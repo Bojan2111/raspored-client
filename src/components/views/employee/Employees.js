@@ -55,12 +55,12 @@ const Employees = (props) => {
     console.log(`Editing employee with Id ${editId}...`);
   };
 
-  const handleDelete = (event) => {
-    event.preventDefault();
-    let deleteId = event.target.id.split("_")[1];
+  // const handleDelete = (event) => {
+  //   event.preventDefault();
+  //   let deleteId = event.target.id.split("_")[1];
 
-    console.log(`The employee with Id ${deleteId} is deleted`);
-  };
+  //   console.log(`The employee with Id ${deleteId} is deleted`);
+  // };
 
   return (
     <div className={classes.container}>
@@ -74,11 +74,11 @@ const Employees = (props) => {
         <div className={classes["table-header-cell"]}>Godina zaposlenja</div>
         <div className={classes["table-header-cell"]}>Smena</div>
         <div></div>
-        <div className={classes.delete}>
+        {/* <div className={classes.delete}>
           <div className={classes.help} data-title={dataTitleMessage}>
             ?
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={classes["table-body"]}>
         {fakeData.map((item) => (
@@ -109,14 +109,14 @@ const Employees = (props) => {
             >
               Izmeni
             </div>
-            <div
+            {/* <div
               className={`${classes["table-cell"]} ${classes["delete-button"]}`}
               onClick={handleDelete}
               id={`delete_${item.id}`}
               key={`delete_${item.id}`}
             >
               Obriši
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

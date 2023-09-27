@@ -23,11 +23,6 @@ const Dashboard = (props) => {
     },
     header: ["Licni", "Timski", "Smenski", "Svi timovi"],
     sideMenu: featureKeys,
-    main: {
-      title: "Glavni pregled",
-      subtitle: "Ovde se mogu naci manje bitne informacije",
-      info: "neke nebitne informacije",
-    },
   };
 
   const handleMainView = (option) => {
@@ -62,11 +57,7 @@ const Dashboard = (props) => {
           onMenuItemClick={handleMenu}
           selectedItem={item}
         />
-        <MainView
-          feature={feature}
-          token={props.token}
-          content={dashboardData.main}
-        />
+        <MainView feature={feature} token={props.token} />
       </div>
     </div>
   );

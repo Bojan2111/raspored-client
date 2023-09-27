@@ -6,7 +6,8 @@ const ProfileControl = (props) => {
     <div className={classes.profile}>
       <h3>Hi {props.username}!</h3>
       <div>
-        <p>control</p>
+        <div>Profil</div>
+        <div>Log Out</div>
       </div>
     </div>
   );
