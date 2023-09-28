@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import classes from "./TeamSchedule.module.css";
+import ContextMenu from "../../layout/ContextMenu";
+import { fakeData } from "./fakeData";
 
 const TeamSchedule = (props) => {
   const [title, setTitle] = useState("");
@@ -7,185 +9,44 @@ const TeamSchedule = (props) => {
   const [month, setMonth] = useState("");
   const [shifts, setShifts] = useState([]);
 
-  const fakeData = [
-    {
-      teamMemberId: 1,
-      teamName: "Tim 1",
-      firstName: "Petar",
-      lastName: "Petrovic",
-      teamMemberRoleName: "VT",
-      teamMemberRoleDescription: "Voda smene",
-      monthName: "AUGUST",
-      shifts: [
-        {
-          shiftDate: "2023-08-01T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-02T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-06T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-07T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-11T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-12T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-16T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-17T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-21T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-22T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-26T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-27T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-31T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-      ],
-    },
-    {
-      teamMemberId: 2,
-      teamName: "Tim 1",
-      firstName: "Lazar",
-      lastName: "Lazic",
-      teamMemberRoleName: "",
-      teamMemberRoleDescription: "",
-      monthName: "AUGUST",
-      shifts: [
-        {
-          shiftDate: "2023-08-01T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-02T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-06T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-07T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-11T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-12T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-16T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-17T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-21T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-22T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-26T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-        {
-          shiftDate: "2023-08-27T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "N",
-          shiftTypeDescription: "Nocna smena - od 19h do 07h",
-        },
-        {
-          shiftDate: "2023-08-31T00:00:00",
-          teamMemberId: 1,
-          shiftTypeName: "D",
-          shiftTypeDescription: "Dnevna smena - od 07h do 19h",
-        },
-      ],
-    },
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
+  const [contextMenuPosition, setContextMenuPosition] = useState({
+    x: 0,
+    y: 0,
+    cellIndex: 0,
+  });
+
+  const showContextMenu = (e, index) => {
+    e.preventDefault(); // Prevent the default context menu from appearing
+    setContextMenuPosition({ x: e.clientX, y: e.clientY, cellIndex: index });
+    setContextMenuVisible(true);
+  };
+
+  const hideContextMenu = () => {
+    setContextMenuVisible(false);
+  };
+
+  const handleAddShift = () => {
+    console.log("adding shift");
+  };
+
+  const handleEditShift = () => {
+    console.log("editing shift");
+  };
+
+  const handleDeleteShift = () => {
+    console.log("deleting shift");
+  };
+
+  const handleShiftChangeRequest = () => {
+    console.log("changing shift");
+  };
+
+  const contextMenuOptions = [
+    { label: "Shift Change Request", action: handleShiftChangeRequest },
+    { label: "Add Shift", action: handleAddShift },
+    { label: "Edit Shift", action: handleEditShift },
+    { label: "Delete Shift", action: handleDeleteShift },
   ];
 
   const dateArray = [];
@@ -217,6 +78,10 @@ const TeamSchedule = (props) => {
       : { name: "", description: "" };
   });
 
+  document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
+
   return (
     <div>
       <div className={classes.header}>
@@ -224,6 +89,7 @@ const TeamSchedule = (props) => {
         <h3>{`${fakeData.lastName} ${fakeData.firstName} - ${fakeData.teamMemberRoleDescription}`}</h3>
         <p>{`Raspored rada za mesec ${fakeData.monthName}`}</p> */}
       </div>
+
       <table className={`table table-bordered ${classes.schedule}`}>
         <thead>
           <tr>
@@ -252,8 +118,13 @@ const TeamSchedule = (props) => {
               ) : (
                 <td className={classes["cell-data"]}></td>
               )}
-              {resultArr.map((shift) => (
-                <td className={classes["cell-data"]} title={shift.description}>
+              {resultArr.map((shift, index) => (
+                <td
+                  key={`td_${shift.name}_${index}`}
+                  className={classes["cell-data"]}
+                  title={shift.description}
+                  onContextMenu={(e) => showContextMenu(e, index)}
+                >
                   {shift.name}
                 </td>
               ))}
@@ -261,6 +132,13 @@ const TeamSchedule = (props) => {
           ))}
         </tbody>
       </table>
+      {contextMenuVisible && (
+        <ContextMenu
+          options={contextMenuOptions}
+          position={contextMenuPosition}
+          onClose={hideContextMenu}
+        />
+      )}
     </div>
   );
 };
