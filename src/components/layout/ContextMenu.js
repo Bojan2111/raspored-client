@@ -1,18 +1,33 @@
 import React from "react";
-// import "./ContextMenu.css";
+import classes from "./ContextMenu.module.css";
 
-const ContextMenu = ({ options, position, onClose }) => {
+const ContextMenu = (props) => {
+  const { options, position, onClose, onItemClick } = props;
+
+  // Render the context menu items
+  const menuItems = options.map((option, index) => (
+    <div
+      key={index}
+      className={`${classes["menu-item"]} ${
+        option.disabled ? classes["disabled"] : ""
+      }`}
+      onClick={() => {
+        if (!option.disabled) {
+          onItemClick(option.action);
+        }
+      }}
+    >
+      {option.label}
+    </div>
+  ));
+
+  // Render the context menu container
   return (
-    <div className="context-menu" style={{ top: position.y, left: position.x }}>
-      {options.map((option, index) => (
-        <div
-          key={index}
-          className="context-menu-item"
-          onClick={() => option.action()}
-        >
-          {option.label}
-        </div>
-      ))}
+    <div
+      className={classes["context-menu"]}
+      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+    >
+      {menuItems}
     </div>
   );
 };

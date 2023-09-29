@@ -1,0 +1,25 @@
+.context-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  min-width: 120px;
+}
+
+/* Style for individual menu items */
+.menu-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style for disabled menu items */
+.menu-item.disabled {
+  cursor: not-allowed;
+  color: #999;
+}
