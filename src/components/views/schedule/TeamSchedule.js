@@ -9,45 +9,6 @@ const TeamSchedule = (props) => {
   const [month, setMonth] = useState("");
   const [shifts, setShifts] = useState([]);
 
-  // const [contextMenuVisible, setContextMenuVisible] = useState(false);
-  // const [contextMenuPosition, setContextMenuPosition] = useState({
-  //   x: 0,
-  //   y: 0,
-  //   cellIndex: 0,
-  // });
-
-  // const showContextMenu = (e, index) => {
-  //   e.preventDefault(); // Prevent the default context menu from appearing
-  //   setContextMenuPosition({ x: e.clientX, y: e.clientY, cellIndex: index });
-  //   setContextMenuVisible(true);
-  // };
-
-  // const hideContextMenu = () => {
-  //   setContextMenuVisible(false);
-  // };
-
-  // const handleAddShift = () => {
-  //   console.log("adding shift");
-  // };
-
-  // const handleEditShift = () => {
-  //   console.log("editing shift");
-  // };
-
-  // const handleDeleteShift = () => {
-  //   console.log("deleting shift");
-  // };
-
-  // const handleShiftChangeRequest = () => {
-  //   console.log("changing shift");
-  // };
-
-  // const contextMenuOptions = [
-  //   { label: "Shift Change Request", action: handleShiftChangeRequest },
-  //   { label: "Add Shift", action: handleAddShift },
-  //   { label: "Edit Shift", action: handleEditShift },
-  //   { label: "Delete Shift", action: handleDeleteShift },
-  // ];
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({
     x: 0,
@@ -55,13 +16,14 @@ const TeamSchedule = (props) => {
   });
   const [selectedCellIndex, setSelectedCellIndex] = useState(null);
 
-  const contextMenuRef = useRef(null);
+  // const contextMenuRef = useRef(null);
 
   const showContextMenu = (e, cellIndex) => {
     e.preventDefault();
     setContextMenuPosition({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
     setSelectedCellIndex(cellIndex);
+    console.log(e);
   };
 
   const hideContextMenu = () => {
@@ -88,10 +50,13 @@ const TeamSchedule = (props) => {
   const handleContextMenuOptionClick = (action) => {
     if (action === handleTransferToTeam) {
       // Perform transfer to another team action
+      action();
     } else if (action === handleEditEmployee) {
       // Perform edit employee action
+      action();
     } else if (action === handleAddShift) {
       // Display a popup or modal for adding a shift
+      action();
     }
   };
 
@@ -123,10 +88,17 @@ const TeamSchedule = (props) => {
     );
     return matchingObj !== undefined
       ? {
+          date: matchingObj.shiftDate,
+          tmId: matchingObj.teamMemberId,
           name: matchingObj.shiftTypeName,
           description: matchingObj.shiftTypeDescription,
         }
-      : { name: "", description: "" };
+      : {
+          date: `${numA}`, // should be date "yyyy-mm-dd"
+          tmId: 0, //find a way to fill this
+          name: "",
+          description: "",
+        };
   });
 
   document.addEventListener("contextmenu", (e) => {
@@ -171,8 +143,10 @@ const TeamSchedule = (props) => {
               )}
               {resultArr.map((shift, index) => (
                 <td
-                  key={`td_${shift.name}`}
+                  key={`td_${shift.name}-${index}`}
                   className={classes["cell-data"]}
+                  data_shiftDate={shift.date}
+                  data_tmId={shift.tmId}
                   title={shift.description}
                   onContextMenu={(e) => showContextMenu(e, index)}
                 >
@@ -196,7 +170,7 @@ const TeamSchedule = (props) => {
           }
           position={contextMenuPosition}
           onClose={hideContextMenu}
-          ref={contextMenuRef}
+          // ref={contextMenuRef}
           onItemClick={handleContextMenuOptionClick}
         />
       )}
