@@ -5,6 +5,8 @@ import ProfileControl from "./ProfileControl";
 import MainView from "./MainView";
 import { featuresList } from "../../app/features";
 import classes from "./Dashboard.module.css";
+import featureSlice from "../../store/featureSlice";
+import { useDispatch } from "react-redux";
 
 const Dashboard = (props) => {
   // const [features, setFeatures] = useState([]);
@@ -15,6 +17,7 @@ const Dashboard = (props) => {
   const featureKeys = Object.keys(featuresList).filter(
     (f) => !f.startsWith("RC")
   );
+  const dispatch = useDispatch();
 
   const dashboardData = {
     profile: {
@@ -37,6 +40,13 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     setFeature(featureKeys.length > 0 ? featureKeys[0] : "");
+    dispatch({
+      action: "setFeature",
+      payload: {
+        menu: item,
+        features: headerItems,
+      },
+    });
   }, [featureKeys]);
 
   return (
