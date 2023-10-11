@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classes from "./TeamSchedule.module.css";
 import ContextMenu from "../../layout/ContextMenu";
 import { fakeData } from "./fakeData";
@@ -6,8 +6,10 @@ import { fakeData } from "./fakeData";
 const TeamSchedule = (props) => {
   const [title, setTitle] = useState("");
   const [team, setTeam] = useState("");
-  const [month, setMonth] = useState("");
+  const [month, setMonth] = useState(0);
   const [shifts, setShifts] = useState([]);
+
+  useEffect(() => setMonth(fakeData[0].shifts[0].month), [month]);
 
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({
@@ -94,7 +96,9 @@ const TeamSchedule = (props) => {
           description: matchingObj.shiftTypeDescription,
         }
       : {
-          date: `${numA}`, // should be date "yyyy-mm-dd"
+          date: `2023-${month.toString().length === 2 ? month : "0" + month}-${
+            numA.toString().length === 2 ? numA : "0" + numA
+          }`,
           tmId: 0, //find a way to fill this
           name: "",
           description: "",
@@ -145,8 +149,8 @@ const TeamSchedule = (props) => {
                 <td
                   key={`td_${shift.name}-${index}`}
                   className={classes["cell-data"]}
-                  data_shiftDate={shift.date}
-                  data_tmId={shift.tmId}
+                  data_shiftdate={shift.date}
+                  data_tmid={shift.tmId}
                   title={shift.description}
                   onContextMenu={(e) => showContextMenu(e, index)}
                 >
