@@ -44,17 +44,55 @@ import { featuresList } from "../features";
 
 // console.log(features);
 
+/*
+(5) ["Raspored", "Timovi", "Zaposleni", ...]
+0
+:
+"Raspored"
+1
+:
+"Timovi"
+2
+:
+"Zaposleni"
+3
+:
+"Podešavanja"
+4
+:
+"Profil"
+[[Prototype]]
+:
+[]
+(4) ["Zaglavlje", "ImeClana", "Smena", "...]
+0
+:
+"Zaglavlje"
+1
+:
+"ImeClana"
+2
+:
+"Smena"
+3
+:
+"DatumSmene"
+[[Prototype]]
+:
+[]
+ */
+
 const menuSlice = createSlice({
   name: "menu",
   initialState: {
     menu: "Raspored",
-    features: ["Licni", "Timski", "Smenski", "Svi timovi"],
+    options: ["Licni", "Timski", "Smenski", "Svi timovi"],
   },
   reducers: {
     setMenu: (state, action) => {
-      const { menu, features } = action.payload;
+      const { menu, options } = action.payload;
       state.menu = menu;
-      state.features = features;
+      state.options = options;
     },
   },
 });
