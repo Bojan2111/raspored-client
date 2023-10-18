@@ -14,7 +14,7 @@ const MainView = (props) => {
       {/* <Employees /> */}
       {/* <AddEmployee /> */}
       {/* <Teams /> */}
-      <TeamSchedule />
+      {/* <TeamSchedule /> */}
     </div>
   );
 };

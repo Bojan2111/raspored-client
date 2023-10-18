@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const headerSlice = createSlice({
   name: "header",
   initialState: {
-    optionsList: [],
+    optionsList: ["Licni", "Timski", "Napravi novi"],
     selectedOptionId: 1,
   },
   reducers: {

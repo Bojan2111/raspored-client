@@ -1,10 +1,13 @@
 import React from "react";
 import classes from "./FuncButton.module.css";
+// import { useDispatch } from "react-redux";
 
 const FuncButton = (props) => {
-  function handleDivClick() {
+  // const dispatch = useDispatch();
+
+  const handleDivClick = () => {
     props.onClick(props.funcBtnText);
-  }
+  };
 
   return (
     <div className={classes.container} onClick={handleDivClick}>

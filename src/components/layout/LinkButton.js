@@ -1,9 +1,13 @@
 import React from "react";
 import classes from "./LinkButton.module.css";
+import { useDispatch } from "react-redux";
+import { setMenu } from "../../store/menuSlice";
 
 const LinkButton = (props) => {
+  const dispatch = useDispatch();
+
   const handleBtnClick = () => {
-    props.onClick(props.btnText);
+    dispatch(setMenu(props.btnText));
   };
   return (
     <div

@@ -158,3 +158,19 @@ export const menuOptions = {
     },
   ],
 };
+
+// try to find a way to transfer classes for font-awesome icons or path to icon image.
+
+export const icons = [
+  {
+    id: 1,
+    name: "fa fa-calendar-o",
+  },
+];
+
+export const optionIconRelation = [
+  {
+    optionId: 1,
+    iconId: 1,
+  },
+];
