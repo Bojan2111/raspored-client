@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { menuOptions } from "../../dummyOptions"; // remove after implementing axios
 import { setMenuData } from "../../store/dashboardSlice";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const dispatch = useDispatch();
 
   async function getFeatures(token) {
@@ -56,7 +56,7 @@ const Dashboard = (props) => {
       </div>
       <div className={classes.main}>
         <DashboardSideMenu />
-        <MainView selectedFeature={selectedFeature} token={props.token} />
+        <MainView selectedFeature={selectedFeature} />
       </div>
     </div>
   );

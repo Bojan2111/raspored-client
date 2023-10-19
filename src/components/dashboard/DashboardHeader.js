@@ -3,7 +3,7 @@ import FuncButton from "../layout/FuncButton";
 import classes from "./DashboardHeader.module.css";
 import { useSelector } from "react-redux";
 
-const DashboardHeader = (props) => {
+const DashboardHeader = () => {
   const options = useSelector((store) => store.menu.options);
   document
     .querySelector(":root")
