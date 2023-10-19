@@ -5,23 +5,29 @@ import { useSelector } from "react-redux";
 // import { useDispatch } from "react-redux";
 
 const DashboardHeader = (props) => {
-  const options = useSelector((store) => store.header.optionsList);
+  const options = useSelector((store) => store.menu.options);
   document
     .querySelector(":root")
     .style.setProperty("--features-grid-cols", options.length);
 
   // const dispatch = useDispatch();
 
-  function handleFuncBtnClick(option) {
-    props.onFeatureClick(option);
-  }
+  // function handleFuncBtnClick(option) {
+  //   props.onFeatureClick(option);
+  // }
+  // onClick={handleFuncBtnClick}
 
   console.log(options);
 
   return (
     <div className={classes.features}>
       {options.map((d) => (
-        <FuncButton onClick={handleFuncBtnClick} key={d} funcBtnText={d} />
+        <FuncButton
+          key={d.id}
+          optionId={d.id}
+          optionName={d.name}
+          description={d.description}
+        />
       ))}
     </div>
   );

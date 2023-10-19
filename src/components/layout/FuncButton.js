@@ -1,21 +1,28 @@
 import React from "react";
 import classes from "./FuncButton.module.css";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setSelectedOption } from "../../store/headerSlice";
 
 const FuncButton = (props) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleDivClick = () => {
-    props.onClick(props.funcBtnText);
+    // props.onClick(props.funcBtnText);
+    dispatch(setSelectedOption(props.optionId));
   };
 
   return (
-    <div className={classes.container} onClick={handleDivClick}>
+    <div
+      id={props.optionId}
+      className={classes.container}
+      title={props.description}
+      onClick={handleDivClick}
+    >
       <div>
         <p>
           <i className="fa fa-calendar-o" aria-hidden="true"></i>
         </p>
-        <p>{props.funcBtnText}</p>
+        <p>{props.optionName}</p>
       </div>
     </div>
   );

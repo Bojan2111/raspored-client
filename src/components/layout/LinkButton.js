@@ -1,13 +1,19 @@
 import React from "react";
 import classes from "./LinkButton.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMenu } from "../../store/menuSlice";
 
 const LinkButton = (props) => {
   const dispatch = useDispatch();
+  const options = useSelector((store) => store.dashboard.menuOptions);
 
   const handleBtnClick = () => {
-    dispatch(setMenu(props.btnText));
+    dispatch(
+      setMenu({
+        menu: props.btnText,
+        options: options[props.btnText],
+      })
+    );
   };
   return (
     <div
