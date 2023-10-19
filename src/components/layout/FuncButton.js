@@ -9,20 +9,15 @@ const FuncButton = (props) => {
     (store) => store.header.selectedOptionId
   );
 
-  const handleDivClick = () => {
-    // props.onClick(props.funcBtnText);
-    dispatch(setSelectedOption(props.optionId));
-  };
-
   return (
     <div
-      key={props.optionId}
+      key={`option-${props.optionId}`}
       id={props.optionId}
       className={`${classes.container} ${
         props.optionId === selectedOptionId ? classes.selected : ""
       }`}
       title={props.description}
-      onClick={handleDivClick}
+      onClick={() => dispatch(setSelectedOption(props.optionId))}
     >
       <div>
         <p>

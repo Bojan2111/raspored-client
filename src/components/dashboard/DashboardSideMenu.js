@@ -2,7 +2,7 @@ import React from "react";
 import LinkButton from "../layout/LinkButton";
 import { useSelector } from "react-redux";
 
-const DashboardSideMenu = (props) => {
+const DashboardSideMenu = () => {
   const menues = useSelector((store) => store.dashboard.menues).filter(
     (m) => !m.startsWith("RC")
   );
