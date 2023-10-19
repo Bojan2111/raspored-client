@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
-import { menuOptions } from "./dummyOptions";
-import { setMenuData } from "./store/dashboardSlice";
-import { setOptionsList } from "./store/headerSlice";
 import { useDispatch } from "react-redux";
 
 const App = () => {
@@ -12,22 +9,6 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [features, setFeatures] = useState(["fasdf", "fsadf"]);
 
-  useEffect(() => {
-    const menuesList = [];
-
-    for (let key of Object.keys(menuOptions)) {
-      menuesList.push(key);
-    }
-    dispatch(
-      setMenuData({
-        menues: menuesList,
-        menuOptions,
-      })
-    );
-    // dispatch(
-    //   setOptionsList()
-    // )
-  }, []);
   // test auth: qwert = zap, asdf = adm
 
   async function sendLoginData(loginData) {

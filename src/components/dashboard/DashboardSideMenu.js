@@ -3,19 +3,16 @@ import LinkButton from "../layout/LinkButton";
 import { useSelector } from "react-redux";
 
 const DashboardSideMenu = (props) => {
-  const menues = useSelector((store) => store.dashboard.menues);
-  const handleClick = (item) => {
-    props.onMenuItemClick(item);
-  };
+  const menues = useSelector((store) => store.dashboard.menues).filter(
+    (m) => !m.startsWith("RC")
+  );
+
+  const selectedMenu = useSelector((store) => store.menu.menu);
+
   return (
     <div>
       {menues.map((d) => (
-        <LinkButton
-          onClick={handleClick}
-          key={d}
-          btnText={d}
-          isSelected={props.selectedItem === d}
-        />
+        <LinkButton key={d} btnText={d} isSelected={selectedMenu === d} />
       ))}
     </div>
   );

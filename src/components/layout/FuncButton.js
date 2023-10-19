@@ -1,10 +1,13 @@
 import React from "react";
 import classes from "./FuncButton.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedOption } from "../../store/headerSlice";
 
 const FuncButton = (props) => {
   const dispatch = useDispatch();
+  const selectedOptionId = useSelector(
+    (store) => store.header.selectedOptionId
+  );
 
   const handleDivClick = () => {
     // props.onClick(props.funcBtnText);
@@ -13,8 +16,11 @@ const FuncButton = (props) => {
 
   return (
     <div
+      key={props.optionId}
       id={props.optionId}
-      className={classes.container}
+      className={`${classes.container} ${
+        props.optionId === selectedOptionId ? classes.selected : ""
+      }`}
       title={props.description}
       onClick={handleDivClick}
     >

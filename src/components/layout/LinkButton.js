@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./LinkButton.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setMenu } from "../../store/menuSlice";
+import { setSelectedOption } from "../../store/headerSlice";
 
 const LinkButton = (props) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const LinkButton = (props) => {
         options: options[props.btnText],
       })
     );
+    dispatch(setSelectedOption(options[props.btnText][0].id));
   };
   return (
     <div

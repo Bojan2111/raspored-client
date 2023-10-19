@@ -17,13 +17,10 @@ const DashboardHeader = (props) => {
   // }
   // onClick={handleFuncBtnClick}
 
-  console.log(options);
-
   return (
     <div className={classes.features}>
       {options.map((d) => (
         <FuncButton
-          key={d.id}
           optionId={d.id}
           optionName={d.name}
           description={d.description}
