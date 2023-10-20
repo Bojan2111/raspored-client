@@ -2,8 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import authFetch from "../axios/custom";
+import { selectCurrentToken } from "./authSlice";
+import authSlice from "./authSlice";
 
 const url = "https://localhost:44383/role-features";
+const token = authSlice.token;
 
 const initialState = {
   menues: [],
@@ -15,7 +18,12 @@ export const getMenuOptions = createAsyncThunk(
   "dashboard/getMenuOptions",
   async (name, thunkAPI) => {
     try {
-      const resp = await authFetch("/role-features");
+      const resp = await axios("/role-features", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       return resp.data;
     } catch (error) {

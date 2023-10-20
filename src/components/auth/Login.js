@@ -1,6 +1,7 @@
 import React, { Fragment, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../store/authSlice";
+import "../../axios/global";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -8,29 +9,19 @@ const Login = (props) => {
   const passwordRef = useRef("");
 
   // test auth: qwert = zap, asdf = adm
+  async function sendLoginData(event) {
+    event.preventDefault();
+    // const response = await axios.post("/login", {
+    //   username: usernameRef.current.value,
+    //   password: passwordRef.current.value,
+    // });
+    const loginData = {
+      username: usernameRef.current.value,
+      password: passwordRef.current.value,
+    };
 
-  async function sendLoginData() {
-    const respones = await axios
-      .post(
-        "/login",
-        {
-          username: usernameRef.current.value,
-          password: passwordRef.current.value,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    // const data = await response.json();
+    // console.log(data);
 
     const response = await fetch("https://localhost:44383/login", {
       method: "POST",
@@ -42,7 +33,7 @@ const Login = (props) => {
     const data = await response.json();
     dispatch(
       setCredentials({
-        user: data.username,
+        user: usernameRef.current.value,
         accessToken: data.token,
       })
     );
@@ -62,7 +53,7 @@ const Login = (props) => {
 
   return (
     <Fragment>
-      <form onSubmit={fakeLogin}>
+      <form onSubmit={sendLoginData}>
         <label htmlFor="username">Username:</label>
         <input name="username" id="username" type="text" ref={usernameRef} />
         <label htmlFor="password">Password:</label>

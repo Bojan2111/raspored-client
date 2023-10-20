@@ -1,15 +1,11 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
-
-const token = useSelector((store) => store.auth.token);
+// import authSlice from "../store/authSlice";
 
 const headers = {
   "Content-Type": "application/json",
+  Accept: "application/json",
+  // Authorization: AUTH_TOKEN,
 };
-
-if (token) {
-  headers.Authorization = `Bearer ${token}`;
-}
 
 const authFetch = axios.create({
   baseURL: "https://localhost:44383",
