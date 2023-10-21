@@ -46,7 +46,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const menuOptions = fetchOptions();
+    fetchOptions();
   }, []);
 
   const selectedFeature = "fd";

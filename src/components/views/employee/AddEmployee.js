@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./AddEmployee.module.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const AddEmployee = () => {
-  // const [contractTypes, setContractTypes] = useState([]);
-  // const [positions, setPositions] = useState([]);
+  const [contractTypes, setContractTypes] = useState([]);
+  const [positions, setPositions] = useState([]);
 
   /*
 
@@ -167,12 +169,33 @@ const AddEmployee = () => {
   const zipCodeRef = useRef("");
   const religiousHolidayRef = useRef("");
 
-  const contractTypes = ["Određeno", "Neodređeno"];
-  const positions = [
-    "Organizaciona sestra",
-    "Edukator",
-    "Medicinska sestra / tehničar",
-  ];
+  const token = useSelector((store) => store.auth.token);
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+
+  // let contractTypes = [];
+  // let positions = [];
+
+  const getSelectOptionData = async () => {
+    try {
+      const contractTypesResponse = await axios("/contract-types", {
+        headers,
+      });
+      const positionsResponse = await axios("/positions", {
+        headers,
+      });
+      setContractTypes(contractTypesResponse.data);
+      setPositions(positionsResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSelectOptionData();
+  }, []);
 
   const handleSubmitData = (event) => {
     event.preventDefault();
@@ -295,11 +318,8 @@ const AddEmployee = () => {
           <label htmlFor="contractType">Tip ugovora</label>
           <select ref={contractTypeRef}>
             {contractTypes.map((ct) => (
-              <option
-                key={ct.substring(0, 3)}
-                value={`${contractTypes.indexOf(ct) + 1}`}
-              >
-                {ct}
+              <option key={"ct" + "-" + ct.id} value={ct.id}>
+                {ct.name}
               </option>
             ))}
           </select>
@@ -308,11 +328,8 @@ const AddEmployee = () => {
           <label htmlFor="position">Radno mesto</label>
           <select ref={positionRef}>
             {positions.map((p) => (
-              <option
-                key={p.substring(0, 3)}
-                value={`${positions.indexOf(p) + 1}`}
-              >
-                {p}
+              <option key={`p-${p.id}`} value={p.id}>
+                {p.name}
               </option>
             ))}
           </select>
