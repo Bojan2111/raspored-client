@@ -10,4 +10,17 @@ const Input = React.forwardRef((props, ref) => {
   );
 });
 
+export const Select = React.forwardRef((props, ref) => {
+  return (
+    <div>
+      <label htmlFor={props.select.id}>{props.label}</label>
+      <select value={select.value} id={select.id} ref={ref}>
+        {props.options.map((option) => (
+          <option value={option.id}>{option.name}</option>
+        ))}
+      </select>
+    </div>
+  );
+});
+
 export default Input;

@@ -158,6 +158,7 @@ const AddEmployee = () => {
   const firstNameRef = useRef("");
   const lastNameRef = useRef("");
   const dateOfBirthRef = useRef("");
+  const phoneRef = useRef("");
   const emailRef = useRef("");
   const yearOfEmploymentRef = useRef("");
   const licenseNumberRef = useRef("");
@@ -209,6 +210,7 @@ const AddEmployee = () => {
     const data = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
+      phone: phoneRef.current.value,
       email: emailRef.current.value,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
@@ -229,8 +231,8 @@ const AddEmployee = () => {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
-        <h2>Add New</h2>
-        <p>Some description</p>
+        <h2>Dodaj zaposlenog</h2>
+        <p>Unos podataka novog zaposlenog</p>
       </div>
       <form onSubmit={handleSubmitData}>
         <Input
@@ -243,7 +245,7 @@ const AddEmployee = () => {
             placeholder: "Username",
           }}
         />
-        <div className={classes["input-field"]}>
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="username">Korisničko ime</label>
           <input
             name="username"
@@ -252,8 +254,18 @@ const AddEmployee = () => {
             placeholder="Username"
             ref={usernameRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={firstNameRef}
+          label="Ime"
+          input={{
+            name: "firstName",
+            id: "firstName",
+            type: "text",
+            placeholder: "First Name",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="firstName">Ime</label>
           <input
             name="firstName"
@@ -262,8 +274,18 @@ const AddEmployee = () => {
             placeholder="First Name"
             ref={firstNameRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={lastNameRef}
+          label="Prezime"
+          input={{
+            name: "lastName",
+            id: "lastName",
+            type: "text",
+            placeholder: "Last Name",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="lastName">Prezime</label>
           <input
             name="lastName"
@@ -272,8 +294,38 @@ const AddEmployee = () => {
             placeholder="Last Name"
             ref={lastNameRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={emailRef}
+          label="Email"
+          input={{
+            name: "email",
+            id: "email",
+            type: "email",
+            placeholder: "Email",
+          }}
+        />
+        <Input
+          ref={emailRef}
+          label="Telefon"
+          input={{
+            name: "phone",
+            id: "phone",
+            type: "text",
+            placeholder: "Phone number",
+          }}
+        />
+        <Input
+          ref={emailRef}
+          label="Email"
+          input={{
+            name: "email",
+            id: "email",
+            type: "email",
+            placeholder: "Email",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="email">Email</label>
           <input
             name="email"
@@ -282,8 +334,18 @@ const AddEmployee = () => {
             placeholder="email"
             ref={emailRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={passwordRef}
+          label="Lozinka"
+          input={{
+            name: "password",
+            id: "password",
+            type: "password",
+            placeholder: "Password",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="password">Lozinka</label>
           <input
             name="password"
@@ -292,8 +354,17 @@ const AddEmployee = () => {
             placeholder="Password"
             ref={passwordRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={dateOfBirthRef}
+          label="Datum rođenja"
+          input={{
+            name: "dateOfBirth",
+            id: "dateOfBirth",
+            type: "date",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="dateOfBirth">Datum Rođenja</label>
           <input
             name="dateOfBirth"
@@ -301,8 +372,18 @@ const AddEmployee = () => {
             type="date"
             ref={dateOfBirthRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={yearOfEmploymentRef}
+          label="Godina zaposlenja"
+          input={{
+            name: "yearOfEmployment",
+            id: "yearOfEmployment",
+            type: "number",
+            min: 1975,
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="yearOfEmployment">Godina zaposlenja</label>
           <input
             name="yearOfEmployment"
@@ -310,8 +391,18 @@ const AddEmployee = () => {
             type="number"
             ref={yearOfEmploymentRef}
           />
-        </div>
-        <div className={classes["input-field"]}>
+        </div> */}
+        <Input
+          ref={licenseNumberRef}
+          label="Broj licence"
+          input={{
+            name: "licenseNumber",
+            id: "licenseNumber",
+            type: "text",
+            placeholder: "License Number",
+          }}
+        />
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="licenseNumber">Broj licence</label>
           <input
             name="licenseNumber"
@@ -320,7 +411,7 @@ const AddEmployee = () => {
             placeholder="License Number"
             ref={licenseNumberRef}
           />
-        </div>
+        </div> */}
         <div className={classes["input-field"]}>
           <label htmlFor="contractType">Tip ugovora</label>
           <select ref={contractTypeRef}>
@@ -341,6 +432,16 @@ const AddEmployee = () => {
             ))}
           </select>
         </div>
+        <Input
+          ref={firstNameRef}
+          label="Ime"
+          input={{
+            name: "firstName",
+            id: "firstName",
+            type: "text",
+            placeholder: "First Name",
+          }}
+        />
         <div className={classes["input-field"]}>
           <label htmlFor="address">Adresa</label>
           <input
@@ -351,6 +452,16 @@ const AddEmployee = () => {
             ref={addressRef}
           />
         </div>
+        <Input
+          ref={firstNameRef}
+          label="Ime"
+          input={{
+            name: "firstName",
+            id: "firstName",
+            type: "text",
+            placeholder: "First Name",
+          }}
+        />
         <div className={classes["input-field"]}>
           <label htmlFor="city">Mesto</label>
           <input
@@ -361,6 +472,16 @@ const AddEmployee = () => {
             ref={cityRef}
           />
         </div>
+        <Input
+          ref={firstNameRef}
+          label="Ime"
+          input={{
+            name: "firstName",
+            id: "firstName",
+            type: "text",
+            placeholder: "First Name",
+          }}
+        />
         <div className={classes["input-field"]}>
           <label htmlFor="zipCode">Poštanski broj</label>
           <input
@@ -371,6 +492,16 @@ const AddEmployee = () => {
             ref={zipCodeRef}
           />
         </div>
+        <Input
+          ref={firstNameRef}
+          label="Ime"
+          input={{
+            name: "firstName",
+            id: "firstName",
+            type: "text",
+            placeholder: "First Name",
+          }}
+        />
         <div className={classes["input-field"]}>
           <label htmlFor="religiousHoliday">Verski praznik</label>
           <input
