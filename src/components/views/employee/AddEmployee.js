@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./AddEmployee.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Input from "../../UI/Input";
 
 const AddEmployee = () => {
   const [contractTypes, setContractTypes] = useState([]);
@@ -152,8 +153,6 @@ const AddEmployee = () => {
 }
   */
 
-  // TODO: fetch for getting positons and contract types.
-
   const usernameRef = useRef("");
   const passwordRef = useRef("");
   const firstNameRef = useRef("");
@@ -174,9 +173,6 @@ const AddEmployee = () => {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
-
-  // let contractTypes = [];
-  // let positions = [];
 
   const getSelectOptionData = async () => {
     try {
@@ -201,6 +197,7 @@ const AddEmployee = () => {
     event.preventDefault();
 
     // could add validation here...
+    const url = process.env.REACT_APP_API_URL;
 
     const getDayMonthFromDate = (dateStr) => {
       let dateArr = dateStr.split("-");
@@ -236,6 +233,16 @@ const AddEmployee = () => {
         <p>Some description</p>
       </div>
       <form onSubmit={handleSubmitData}>
+        <Input
+          ref={usernameRef}
+          label="Korisničko ime"
+          input={{
+            name: "username",
+            id: "username",
+            type: "text",
+            placeholder: "Username",
+          }}
+        />
         <div className={classes["input-field"]}>
           <label htmlFor="username">Korisničko ime</label>
           <input

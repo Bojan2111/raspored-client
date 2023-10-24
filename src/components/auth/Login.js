@@ -1,6 +1,7 @@
 import React, { Fragment, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../store/authSlice";
+import Input from "../UI/Input";
 import "../../axios/global";
 
 const Login = (props) => {
@@ -54,7 +55,25 @@ const Login = (props) => {
   return (
     <Fragment>
       <form onSubmit={sendLoginData}>
-        <label htmlFor="username">Username:</label>
+        <Input
+          label="Korisničko ime"
+          input={{
+            name: "username",
+            id: "username",
+            type: "text",
+          }}
+          ref={usernameRef}
+        />
+        <Input
+          label="Lozinka"
+          input={{
+            name: "password",
+            id: "password",
+            type: "password",
+          }}
+          ref={passwordRef}
+        />
+        {/* <label htmlFor="username">Username:</label>
         <input name="username" id="username" type="text" ref={usernameRef} />
         <label htmlFor="password">Password:</label>
         <input
@@ -62,7 +81,7 @@ const Login = (props) => {
           id="password"
           type="password"
           ref={passwordRef}
-        />
+        /> */}
         <button>Submit</button>
       </form>
     </Fragment>
