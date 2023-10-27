@@ -14,7 +14,7 @@ export const Select = React.forwardRef((props, ref) => {
   return (
     <div>
       <label htmlFor={props.select.id}>{props.label}</label>
-      <select value={select.value} id={select.id} ref={ref}>
+      <select value={props.select.value} id={props.select.id} ref={ref}>
         {props.options.map((option) => (
           <option value={option.id}>{option.name}</option>
         ))}

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Employees.module.css";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Employees = (props) => {
+  const authToken = useSelector((store) => store.auth.token);
+  const [teamMembers, setTeamMembers] = useState(null);
   const fakeData = [
     {
       id: 1,
@@ -45,6 +49,26 @@ const Employees = (props) => {
     },
   ];
 
+  const fetchData = async () => {
+    try {
+      const response = await axios("/team-members", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      console.log(response.data);
+      setTeamMembers(response.data);
+      console.log("teamMembers: ", teamMembers);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const dataTitleMessage =
     "Brisanjem se podaci o zaposlenom prebacuju iz aktuelne baze podataka u arhivu, gde stoje minimum 10 godina.";
 
@@ -68,8 +92,7 @@ const Employees = (props) => {
         <h2>Spisak zaposlenih</h2>
       </div>
       <div className={classes["table-header"]}>
-        <div className={classes["table-header-cell"]}>Prezime</div>
-        <div className={classes["table-header-cell"]}>Ime</div>
+        <div className={classes["table-header-cell"]}>Ime zaposlenog</div>
         <div className={classes["table-header-cell"]}>Radno mesto</div>
         <div className={classes["table-header-cell"]}>Godina zaposlenja</div>
         <div className={classes["table-header-cell"]}>Smena</div>
@@ -81,35 +104,39 @@ const Employees = (props) => {
         </div> */}
       </div>
       <div className={classes["table-body"]}>
-        {fakeData.map((item) => (
-          <div key={item.id} className={classes["table-body-row"]}>
-            <div key={`lastName-${item.id}`} className={classes["table-cell"]}>
-              {item.lastName}
-            </div>
-            <div key={`firstName-${item.id}`} className={classes["table-cell"]}>
-              {item.firstName}
-            </div>
-            <div key={`position-${item.id}`} className={classes["table-cell"]}>
-              {item.position}
-            </div>
-            <div
-              key={`employment-${item.id}`}
-              className={classes["table-cell"]}
-            >
-              {item.yearOfEmployment}
-            </div>
-            <div key={`team-${item.id}`} className={classes["table-cell"]}>
-              {item.teamName}
-            </div>
-            <div
-              className={`${classes["table-cell"]} ${classes["edit-button"]}`}
-              onClick={handleEdit}
-              id={`edit_${item.id}`}
-              key={`edit_${item.id}`}
-            >
-              Izmeni
-            </div>
-            {/* <div
+        {teamMembers &&
+          teamMembers.map((item) => (
+            <div key={item.id} className={classes["table-body-row"]}>
+              <div
+                key={`lastName-${item.id}`}
+                className={classes["table-cell"]}
+              >
+                {item.name}
+              </div>
+              <div
+                key={`position-${item.id}`}
+                className={classes["table-cell"]}
+              >
+                {item.role}
+              </div>
+              <div
+                key={`employment-${item.id}`}
+                className={classes["table-cell"]}
+              >
+                {item.yearOfEmployment}
+              </div>
+              <div key={`team-${item.id}`} className={classes["table-cell"]}>
+                {item.teamName}
+              </div>
+              <div
+                className={`${classes["table-cell"]} ${classes["edit-button"]}`}
+                onClick={handleEdit}
+                id={`edit_${item.id}`}
+                key={`edit_${item.id}`}
+              >
+                Izmeni
+              </div>
+              {/* <div
               className={`${classes["table-cell"]} ${classes["delete-button"]}`}
               onClick={handleDelete}
               id={`delete_${item.id}`}
@@ -117,8 +144,8 @@ const Employees = (props) => {
             >
               Obriši
             </div> */}
-          </div>
-        ))}
+            </div>
+          ))}
       </div>
     </div>
   );

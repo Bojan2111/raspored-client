@@ -159,7 +159,7 @@ const AddEmployee = () => {
   const lastNameRef = useRef("");
   const dateOfBirthRef = useRef("");
   const phoneRef = useRef("");
-  const emailRef = useRef("");
+  const emailRef = useRef("rwqer");
   const yearOfEmploymentRef = useRef("");
   const licenseNumberRef = useRef("");
   const contractTypeRef = useRef("");
@@ -190,6 +190,17 @@ const AddEmployee = () => {
     }
   };
 
+  const addEmployee = async (data) => {
+    try {
+      const addEmployeeResponse = await axios.post("/register", data, {
+        headers,
+      });
+      console.log(addEmployeeResponse.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   useEffect(() => {
     getSelectOptionData();
   }, []);
@@ -199,6 +210,7 @@ const AddEmployee = () => {
 
     // could add validation here...
     const url = process.env.REACT_APP_API_URL;
+    const currentDate = new Date();
 
     const getDayMonthFromDate = (dateStr) => {
       let dateArr = dateStr.split("-");
@@ -208,13 +220,12 @@ const AddEmployee = () => {
     };
 
     const data = {
-      username: usernameRef.current.value,
-      password: passwordRef.current.value,
-      phone: phoneRef.current.value,
-      email: emailRef.current.value,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
       dateOfBirth: dateOfBirthRef.current.value,
+      userName: usernameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
       yearOfEmployment: parseInt(yearOfEmploymentRef.current.value),
       licenseNumber: licenseNumberRef.current.value,
       contractTypeId: parseInt(contractTypeRef.current.value),
@@ -222,10 +233,32 @@ const AddEmployee = () => {
       address: addressRef.current.value,
       city: cityRef.current.value,
       zipCode: zipCodeRef.current.value,
-      religiousHoliday: getDayMonthFromDate(religiousHolidayRef.current.value), // It is in "yyyy-mm-dd" string format. use new Date(ref.current.value) otherwise
+      phoneNumber: phoneRef.current.value,
+      religiousHoliday: getDayMonthFromDate(religiousHolidayRef.current.value),
+      role: "zaposleni",
+      registrationDate: `${currentDate.getFullYear()}-${
+        currentDate.getMonth() + 1
+      }-${currentDate.getDate()}`,
     };
 
-    console.log(data);
+    // const data = {
+    //   username: usernameRef.current.value,
+    //   password: passwordRef.current.value,
+    //   phone: phoneRef.current.value,
+    //   email: emailRef.current.value,
+    //   firstName: firstNameRef.current.value,
+    //   lastName: lastNameRef.current.value,
+    //   dateOfBirth: dateOfBirthRef.current.value,
+    //   yearOfEmployment: parseInt(yearOfEmploymentRef.current.value),
+    //   licenseNumber: licenseNumberRef.current.value,
+    //   contractTypeId: parseInt(contractTypeRef.current.value),
+    //   positionId: parseInt(positionRef.current.value),
+    //   address: addressRef.current.value,
+    //   city: cityRef.current.value,
+    //   zipCode: zipCodeRef.current.value,
+    //   religiousHoliday: getDayMonthFromDate(religiousHolidayRef.current.value), // It is in "yyyy-mm-dd" string format. use new Date(ref.current.value) otherwise
+    // };
+    addEmployee(data);
   };
 
   return (
@@ -306,23 +339,13 @@ const AddEmployee = () => {
           }}
         />
         <Input
-          ref={emailRef}
+          ref={phoneRef}
           label="Telefon"
           input={{
             name: "phone",
             id: "phone",
             type: "text",
             placeholder: "Phone number",
-          }}
-        />
-        <Input
-          ref={emailRef}
-          label="Email"
-          input={{
-            name: "email",
-            id: "email",
-            type: "email",
-            placeholder: "Email",
           }}
         />
         {/* <div className={classes["input-field"]}>
@@ -433,16 +456,16 @@ const AddEmployee = () => {
           </select>
         </div>
         <Input
-          ref={firstNameRef}
-          label="Ime"
+          ref={addressRef}
+          label="Adresa"
           input={{
-            name: "firstName",
-            id: "firstName",
+            name: "address",
+            id: "address",
             type: "text",
-            placeholder: "First Name",
+            placeholder: "Address",
           }}
         />
-        <div className={classes["input-field"]}>
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="address">Adresa</label>
           <input
             name="address"
@@ -451,18 +474,18 @@ const AddEmployee = () => {
             placeholder="address"
             ref={addressRef}
           />
-        </div>
+        </div> */}
         <Input
-          ref={firstNameRef}
-          label="Ime"
+          ref={cityRef}
+          label="Mesto"
           input={{
-            name: "firstName",
-            id: "firstName",
+            name: "city",
+            id: "city",
             type: "text",
-            placeholder: "First Name",
+            placeholder: "City",
           }}
         />
-        <div className={classes["input-field"]}>
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="city">Mesto</label>
           <input
             name="city"
@@ -471,18 +494,18 @@ const AddEmployee = () => {
             placeholder="city"
             ref={cityRef}
           />
-        </div>
+        </div> */}
         <Input
-          ref={firstNameRef}
-          label="Ime"
+          ref={zipCodeRef}
+          label="Poštanski broj"
           input={{
-            name: "firstName",
-            id: "firstName",
+            name: "zipCode",
+            id: "zipCode",
             type: "text",
-            placeholder: "First Name",
+            placeholder: "ZIP Code",
           }}
         />
-        <div className={classes["input-field"]}>
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="zipCode">Poštanski broj</label>
           <input
             name="zipCode"
@@ -491,18 +514,17 @@ const AddEmployee = () => {
             placeholder="zipCode"
             ref={zipCodeRef}
           />
-        </div>
+        </div> */}
         <Input
-          ref={firstNameRef}
-          label="Ime"
+          ref={religiousHolidayRef}
+          label="Verski Praznik"
           input={{
-            name: "firstName",
-            id: "firstName",
-            type: "text",
-            placeholder: "First Name",
+            name: "religiousHoliday",
+            id: "religiousHoliday",
+            type: "date",
           }}
         />
-        <div className={classes["input-field"]}>
+        {/* <div className={classes["input-field"]}>
           <label htmlFor="religiousHoliday">Verski praznik</label>
           <input
             name="religiousHoliday"
@@ -510,7 +532,7 @@ const AddEmployee = () => {
             type="date"
             ref={religiousHolidayRef}
           />
-        </div>
+        </div> */}
         <div className={classes.submit}>
           <button>Dodaj korisnika</button>
         </div>
