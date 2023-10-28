@@ -93,7 +93,8 @@ const Employees = (props) => {
       </div>
       <div className={classes["table-header"]}>
         <div className={classes["table-header-cell"]}>Ime zaposlenog</div>
-        <div className={classes["table-header-cell"]}>Radno mesto</div>
+        <div className={classes["table-header-cell"]}>Pozicija</div>
+        <div className={classes["table-header-cell"]}>Uloga</div>
         <div className={classes["table-header-cell"]}>Godina zaposlenja</div>
         <div className={classes["table-header-cell"]}>Smena</div>
         <div></div>
@@ -107,17 +108,17 @@ const Employees = (props) => {
         {teamMembers &&
           teamMembers.map((item) => (
             <div key={item.id} className={classes["table-body-row"]}>
-              <div
-                key={`lastName-${item.id}`}
-                className={classes["table-cell"]}
-              >
+              <div key={`name-${item.id}`} className={classes["table-cell"]}>
                 {item.name}
               </div>
               <div
                 key={`position-${item.id}`}
                 className={classes["table-cell"]}
               >
-                {item.role}
+                {item.position}
+              </div>
+              <div key={`role-${item.id}`} className={classes["table-cell"]}>
+                {item.role !== "MST" ? item.role : ""}
               </div>
               <div
                 key={`employment-${item.id}`}
