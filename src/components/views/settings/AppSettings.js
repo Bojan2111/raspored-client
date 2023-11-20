@@ -22,16 +22,13 @@ const AppSettings = () => {
             <div className={classes["feature-wrapper"]}>
               <div className={classes.feature}>Dark Mode</div>
               <div className={classes.setting}>
-                <label class="switch">
-                  <input type="checkbox" checked />
-                  <span class="slider"></span>
+                <label className={classes.switch}>
+                  <input type={classes.checkbox} checked />
+                  <span className="slider"></span>
                 </label>
-                <br />
-                <br />
-
-                <label class="switch">
+                <label className={classes.switch}>
                   <input type="checkbox" />
-                  <span class="slider round"></span>
+                  <span className={`${classes.slider} ${classes.round}`}></span>
                 </label>
               </div>
             </div>

@@ -5,6 +5,8 @@ import AddEmployee from "../views/employee/AddEmployee";
 import Employees from "../views/employee/Employees";
 import Teams from "../views/team/Teams";
 import TeamSchedule from "../views/schedule/TeamSchedule";
+import AppSettings from "../views/settings/AppSettings";
+import AdminSettings from "../views/settings/AdminSettings";
 import { useSelector } from "react-redux";
 
 const MainView = () => {
@@ -29,6 +31,14 @@ const MainView = () => {
 
     case 11:
       mainViewComponent = <AddEmployee />;
+      break;
+
+    case 15:
+      mainViewComponent = <AppSettings />;
+      break;
+
+    case 16:
+      mainViewComponent = <AdminSettings />;
       break;
 
     default:
